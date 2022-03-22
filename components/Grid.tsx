@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import Card from '@/components/Card';
+import Card from './Card';
 import { ExclamationIcon } from '@heroicons/react/outline';
 import { useSession } from 'next-auth/react';
 
@@ -39,7 +39,7 @@ const Grid = ({ homes = [] }) => {
       try {
         // let data = homes.filter((home) => home.id === id);
         const response = await axios.put(`/api/homes/${id}/favorite`, id);
-        setFavorites(...favorites, id);
+        setFavorites([...favorites, id]);
       } catch (e) {
         console.log(e);
       }

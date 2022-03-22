@@ -1,7 +1,8 @@
 import { getSession } from 'next-auth/react';
-import Layout from '@/components/Layout';
-import Grid from '@/components/Grid';
-import { prisma } from '@/lib/prisma';
+// import Layout from '@/components/Layout';
+import Layout from '../components/Layout';
+import Grid from '../components/Grid';
+import { prisma } from '../lib/prisma';
 
 export async function getServerSideProps(context) {
   // Check if user is authenticated

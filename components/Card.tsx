@@ -3,6 +3,19 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { HeartIcon } from '@heroicons/react/solid';
 
+interface Card {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+  guests: number;
+  beds: number;
+  baths: number;
+  price: number;
+  favorite: boolean;
+  onClickFavorite: (id: string, favorite: boolean) => void;
+}
+
 const Card = ({
   id = '',
   image = '',
@@ -13,7 +26,7 @@ const Card = ({
   price = 0,
   favorite = false,
   onClickFavorite = () => null,
-}) => (
+}: Card) => (
   <Link href={`/homes/${id}`}>
     <a className="block w-full">
       <div className="relative bg-gray-200 rounded-lg shadow overflow-hidden aspect-video">
@@ -71,18 +84,5 @@ const Card = ({
     </a>
   </Link>
 );
-
-Card.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  guests: PropTypes.number,
-  beds: PropTypes.number,
-  baths: PropTypes.number,
-  price: PropTypes.number,
-  favorite: PropTypes.bool,
-  onClickFavorite: PropTypes.func,
-};
 
 export default Card;

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, ReactNode, MouseEventHandler } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -39,6 +39,14 @@ const menuItems = [
     onClick: signOut,
   },
 ];
+
+// Layout.propTypes = {
+//   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+// };
+
+// interface Layout {
+//   children: (openModal) => null | ReactNode;
+// }
 
 const Layout = ({ children = null }) => {
   const router = useRouter();
@@ -188,10 +196,6 @@ const Layout = ({ children = null }) => {
       </div>
     </>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 export default Layout;
