@@ -3,7 +3,7 @@ This application is based off this tutorial:
 
 [![Airbnb Clone](https://i.imgur.com/GZCuMvX.png)](https://airbnb-clone-pkohler95.vercel.app/)
 
-##Technologies used in this application
+### Technologies used in this application
 
 - Next.js
 - Next Auth
