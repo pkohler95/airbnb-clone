@@ -20,19 +20,18 @@ const transporter = nodemailer.createTransport({
   secure: true,
 });
 
-console.log('transporter');
-console.log(transporter);
-
 const emailsDir = path.resolve(process.cwd(), 'emails');
 
 const sendVerificationRequest = ({ identifier, url }) => {
-  console.log('send verification request');
+  console.log('transporter');
+  console.log(transporter);
   const emailFile = readFileSync(path.join(emailsDir, 'confirm-email.html'), {
     encoding: 'utf8',
   });
-  console.log('send verification request');
 
   const emailTemplate = Handlebars.compile(emailFile);
+  console.log('send verification request');
+  console.log(emailTemplate);
   try {
     console.log('trying to send email');
     transporter.sendMail(
