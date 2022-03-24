@@ -20,15 +20,21 @@ const transporter = nodemailer.createTransport({
   secure: true,
 });
 
+console.log('transporter');
+console.log(transporter);
+
 const emailsDir = path.resolve(process.cwd(), 'emails');
 
 const sendVerificationRequest = ({ identifier, url }) => {
+  console.log('send verification request');
   const emailFile = readFileSync(path.join(emailsDir, 'confirm-email.html'), {
     encoding: 'utf8',
   });
+  console.log('send verification request');
 
   const emailTemplate = Handlebars.compile(emailFile);
   try {
+    console.log('trying to send email');
     transporter.sendMail(
       {
         from: `"✨ SupaVacation" ${process.env.EMAIL_FROM}`,
@@ -42,6 +48,7 @@ const sendVerificationRequest = ({ identifier, url }) => {
       },
       () => null
     );
+    console.log('after trying to send email');
   } catch (e) {
     console.log('error');
     console.log(e);
