@@ -17,24 +17,21 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_SERVER_USER,
     pass: process.env.EMAIL_SERVER_PASSWORD,
   },
-  secure: true,
+  secure: false,
 });
 
 const emailsDir = path.resolve(process.cwd(), 'emails');
 
-const sendVerificationRequest = ({ identifier, url }) => {
-  console.log('transporter');
-  console.log(transporter);
+const sendVerificationRequest = async ({ identifier, url }) => {
   const emailFile = readFileSync(path.join(emailsDir, 'confirm-email.html'), {
     encoding: 'utf8',
   });
 
   const emailTemplate = Handlebars.compile(emailFile);
-  console.log('send verification request');
-  console.log(emailTemplate);
+
   try {
     console.log('trying to send email');
-    transporter.sendMail(
+    let sendResult = await transporter.sendMail(
       {
         from: `"✨ SupaVacation" ${process.env.EMAIL_FROM}`,
         to: identifier,
@@ -48,6 +45,7 @@ const sendVerificationRequest = ({ identifier, url }) => {
       () => null
     );
     console.log('after trying to send email');
+    console.log(sendResult);
   } catch (e) {
     console.log('error');
     console.log(e);
