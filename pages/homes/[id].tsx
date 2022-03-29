@@ -20,7 +20,8 @@ const ListedHome = (home = null) => {
       if (session?.user) {
         try {
           const owner = await axios.get(`/api/homes/${home.id}/owner`);
-          setIsOwner(owner?.id === session.user.id);
+
+          setIsOwner(owner?.data.email === session?.user.email);
         } catch (e) {
           setIsOwner(false);
         }
